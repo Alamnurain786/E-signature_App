@@ -3,18 +3,28 @@ import Title from "./components/Title";
 import "./App.css";
 
 function App() {
+  const [name, setName] = useState("Your Signature");
+  const [date, setDate] = useState("");
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+  };
   const stylesheet = {
     border: "none",
     borderBottom: "1px dotted black",
     outline: "none",
     padding: ".35rem 0",
   };
-
+  document.body.style.background = "#eee";
   return (
     <>
-      <div className="container text-center">
-        <Title classes={"subtile"} text={"Name"} />
-        <Title classes={"subtile"} text={"Date"} />
+      <div className="box text-center">
+        <Title classes={"subtile"} text={name} />
+        <Title classes={""} text={!date ? "DOB" : date} />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus nemo
           asperiores magni ad consequuntur, aspernatur ab esse, iure fugiat
@@ -22,16 +32,19 @@ function App() {
           beatae.
         </p>
 
-        <footer
-          className="d-flex"
-          style={{
-            justifyContent: "space-around",
-            position: "relative",
-            top: "40vh",
-          }}
-        >
-          <input type="date" value={""} style={stylesheet} />
-          <input type="text" value={""} style={stylesheet} />
+        <footer className="d-flex">
+          <input
+            type="date"
+            value={date}
+            style={stylesheet}
+            onChange={handleDateChange}
+          />
+          <input
+            type="text"
+            value={name}
+            style={stylesheet}
+            onChange={handleNameChange}
+          />
         </footer>
       </div>
     </>
